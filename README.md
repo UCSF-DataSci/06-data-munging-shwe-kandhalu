@@ -45,7 +45,7 @@
   ```
 - **Justification**: This method finds where the missing values are and simply gets rid of them. We cannot easily replace this data since we do not have a good measure of replacement, so removing the value is better.
 - **Impact**: 
-  - Rows affected: [NUMBER]
+  - Rows affected: 30978 missing values
   - Data distribution change: The summary stats remained the same after dropping missing values.
 
 ### Issue 2: Duplicated values
@@ -56,7 +56,7 @@
   ```
 - **Justification**: This function does exactly what I need it to do - removing duplicated values.
 - **Impact**: 
-  - Rows affected: [NUMBER]
+  - Rows affected: 2950 duplicated values
   - Data distribution change: The summary stats remained the same after dropping duplicated values.
 
   ### Issue 3: Outliers
@@ -98,4 +98,4 @@
 
 ### Summary of Changes
 - Missing values and duplicate values were all dropped. Outliers for the population column were also removed. Some challenges were how to approach cleaning the data. For example, for the removal of outliers, I got an error that did not let me calculate the IQR properly, as not all values are numerical. Since income_group category is not numerical, I had to find a way to create a new dataset that only included the numeric columns, so I can calculate the IQR of just those, and remove those outliers.
--  The mean, standard deviation, min, max, and IQR all changed. 
+-  The mean, standard deviation, min, max, and IQR all changed. Through this assignment, I learned what dirty data means and what it takes to find and clean data to end with a cleaned up dataset that can be used to find out information efficiently and accurately. Next time, I will make sure to find even more mistakes and clean them up as well. Next steps will include actually conducting analysis on the cleaned up dataset.
