@@ -1,23 +1,28 @@
-# clean_data.py
-
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('messy_population_data.csv')
+def clean_dataset(filename, output):
+    
+    # read csv file input
+    df = pd.read_csv(filename)
 
-df.info()
+    # issue 1: handling missing values
+    df = df.dropna()
 
-df.describe(include='all')
+    # issue 2: handling duplicated values
+    df = df.drop_duplicates()
 
-df.isnull().sum()
+    # issue 3: outliers
+    Q1 = df['population'].quantile(0.25)
+    Q3 = df['population'].quantile(0.75)
+    IQR = Q3 - Q1
+    df_clean = df[~((df['population'] < (Q1 - 1.5 * IQR)) | (df['population'] > (Q3 + 1.5 * IQR)))]
 
-df.duplicated().sum()
+    # issue 4: incorrect data type
 
-print(df.dtypes)
+    # save cleaned dataset as csv file
+    df.to_csv(output, index = False)
 
-unique_counts = df.nunique()
-print(unique_counts)
+    print(f"Cleaned Dataset saved as {output}")
 
-for col in df.columns:
-    print(f"Value counts for {col}:")
-    print(df[col].value_counts())
+clean_dataset('messy_population_data.csv', 'cleaned_population_data.csv')
