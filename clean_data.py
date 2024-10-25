@@ -18,8 +18,6 @@ print(df.dtypes)
 unique_counts = df.nunique()
 print(unique_counts)
 
-"""
 for col in df.columns:
     print(f"Value counts for {col}:")
     print(df[col].value_counts())
-"""
