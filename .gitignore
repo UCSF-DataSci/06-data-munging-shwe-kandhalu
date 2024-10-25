@@ -7,3 +7,6 @@ __pycache__/
 
 # Ignore environment variables file
 .env
+
+# Ignore example_readme.md
+example_readme.md/
