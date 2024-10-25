@@ -13,10 +13,7 @@ def clean_dataset(filename, output):
     df = df.drop_duplicates()
 
     # issue 3: outliers
-    Q1 = df['population'].quantile(0.25)
-    Q3 = df['population'].quantile(0.75)
-    IQR = Q3 - Q1
-    df_clean = df[~((df['population'] < (Q1 - 1.5 * IQR)) | (df['population'] > (Q3 + 1.5 * IQR)))]
+    
 
     # issue 4: incorrect data type
 
